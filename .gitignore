@@ -1,0 +1,11 @@
+*
+!*/
+!.gitignore
+!server.py
+!README.md
+!style.css
+!script.js
+!index.html
+!app.js
+!public/*
+!cache

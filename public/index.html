@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Don's Repo Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Don's Repo Viewer</h1>
+      <p id="subtitle">My repo viewer for walking, graphing, and inspecting source trees.</p>
+    </div>
+
+    <div class="repo-controls">
+      <input id="repoPath" placeholder="Local path for server mode, or GitHub URL" />
+      <button id="openRepo">Open</button>
+      <button id="pickFolder">Pick Folder</button>
+      <button id="openGithub">Open GitHub</button>
+      <select id="repoHistory" title="Recent / cached repos">
+        <option value="">Recent repos</option>
+      </select>
+      <button id="rescan">Rescan</button>
+      <label class="theme-control" title="Pick the main theme colour. Accent colours come from the complementary range.">
+        <span>Theme</span>
+        <input id="themeColor" type="color" value="#70c7ff" />
+      </label>
+      <label class="check-control" title="Snap dragged/resized cards to a small grid.">
+        <input id="snapCards" type="checkbox" checked />
+        <span>Snap cards</span>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <aside id="leftPane">
+      <section class="card stats-card" data-card-id="status">
+        <h2>Status</h2>
+        <div id="stats">Load a GitHub repo, pick a local folder, or run the optional local server.</div>
+        <button id="gitStatus">Git Status</button>
+        <pre id="gitOut"></pre>
+      </section>
+
+      <section class="card" data-card-id="search">
+        <h2>Search</h2>
+        <input id="searchBox" placeholder="file, symbol, text..." />
+        <div id="searchResults"></div>
+      </section>
+
+      <section class="card tree-card" data-card-id="tree">
+        <h2>Tree</h2>
+        <div id="tree"></div>
+      </section>
+    </aside>
+
+    <section id="centerPane">
+      <nav class="tabs">
+        <button data-mode="walk" class="active">Walk</button>
+        <button data-mode="graph">Graph</button>
+        <button data-mode="hotspots">Hotspots</button>
+      </nav>
+      <canvas id="mapCanvas"></canvas>
+      <div id="hint">Walk: click files/folders or use WASD/arrows. Graph: drag orbs, drag empty space to pan, wheel to zoom.</div>
+    </section>
+
+    <aside id="rightPane">
+      <section class="card inspector-card" data-card-id="inspector">
+        <h2>Inspector</h2>
+        <div id="inspector">Select a node.</div>
+      </section>
+
+      <section class="card code-card" data-card-id="preview">
+        <h2>File Preview</h2>
+        <pre id="code"></pre>
+      </section>
+    </aside>
+  </main>
+
+  <input id="folderInput" type="file" webkitdirectory directory multiple hidden />
+  <script src="app.js"></script>
+</body>
+</html>
